@@ -1,0 +1,21 @@
+env:
+  global:
+    secure: "X7CiFv8Rwt42FqUQR7rrjpGqsEamMl6qViUCVAOSM+MoKyfSq3UWGQ/4nLsJI7Ue2vIaOZ8G1h9PD0F5OR3+OVZDZYe27a+HiqXkiE2PxApddm6JuAQccOdC4mrS9fUIShiGeyzy95gj6ZXSZprRfryy2KQ1TO6kxzPXCSS9u8SXqz1BS8i53rwNL86KJfYJ/1rTxeaBw2e3xGwnuPQVeB8xM910rhBKFpCI54RwS6/u6K5iFtyX65isYSN8uXsg8mxMCd+DAA6UGIE9fLwkWSDmVL+0Swdx2Rfa3lcA1LnLFHT6whXDYnasoLBUok8puwfqVNhQVdmSPTcSXH57XmAI2vXKU68K1XZoZ3vKs7M2Lf3UmimWY5oVLxVO3pJe5moXX2ALfRjKnlool6EN9d8x44wEq6JncIcrmGfbzlwqBsk+GR3oUVAJIwwG81e2Cuvadfeu5yzgWMzSh0qyikWwUapXQqC48g0RWVgBxpsGxA7Tq4uC6SoM+8Hw6/pEskZgLdn4U8siHMqFIwcQiuZDJaptHcUiq1oUWRVgSHmPuS3ZkZSQnSqB0q3hca9rdDVR3AWj2NCsHeSX0bGUHaX7ieOtNOS3/81eb9kQNjyB94RUzg7Jo2ZMXT6N6GVBtFuY1pQsSQk/awTdHTZZOlQjJZs1pPBIEVl03OTSEkY="
+
+language: python
+sudo: false
+notifications:
+  email: false
+install:
+- pip install mkdocs
+- pip install git+https://github.com/r0wb0t/markdown-urlize@master
+script:
+- git clone -b gh-pages https://${GH_TOKEN}@github.com/ModDocs/framez/ ../gh-pages
+  > /dev/null 2>&1
+- mkdocs build --clean --site-dir ../gh-pages
+- cd ../gh-pages
+- git add -A
+- git config --global user.email "contact@travis-ci.org"
+- git config --global user.name "Travis CI"
+- git commit -am "CI Update"
+- '[ "$TRAVIS_PULL_REQUEST" == "false" ] && git push > /dev/null 2>&1 || true'
