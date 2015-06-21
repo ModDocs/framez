@@ -2,12 +2,12 @@
     "docs": [
         {
             "location": "/", 
-            "text": "Framez", 
+            "text": "Framez\n\n\nWelcome to the documentation of Framez.", 
             "title": "Home"
         }, 
         {
             "location": "/#framez", 
-            "text": "", 
+            "text": "Welcome to the documentation of Framez.", 
             "title": "Framez"
         }
     ]
